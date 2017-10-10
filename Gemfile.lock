@@ -149,7 +149,7 @@ GEM
       json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rmagick (2.15.3)
+    rmagick (2.16.0)
     ruby_parser (3.7.2)
       sexp_processor (~> 4.1)
     sass (3.4.21)
@@ -213,3 +213,6 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.14.6
