@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    # @prototype.image.cache! unless @prototype.image.blank?
   end
 
   def update

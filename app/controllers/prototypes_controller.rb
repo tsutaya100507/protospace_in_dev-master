@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+  before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
     @prototypes = Prototype.all.page(params[:page]).per(5)
@@ -20,6 +20,19 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    # @prototype = Prototype.find(params[:id])
+  end
+
+  def edit
+
+  end
+
+
+  def update
+    # if prototype.user_id == current_user.id
+    # binding.pry
+    @prototype.update(prototype_params)
+    redirect_to :root
   end
 
   private
