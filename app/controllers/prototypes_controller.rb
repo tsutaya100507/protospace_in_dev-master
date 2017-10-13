@@ -26,7 +26,6 @@ class PrototypesController < ApplicationController
     prototype = Prototype.find(params[:id])
       if prototype.user_id == current_user.id
         prototype.destroy
-        # redirect_to root_path, alert: 'Products All DESTROY'
       end
   end
 
