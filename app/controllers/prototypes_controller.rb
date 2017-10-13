@@ -22,6 +22,14 @@ class PrototypesController < ApplicationController
   def show
   end
 
+  def destroy
+    prototype = Prototype.find(params[:id])
+      if prototype.user_id == current_user.id
+        prototype.destroy
+        redirect_to root_path, alert: 'Products All DESTROY'
+      end
+  end
+
   private
 
   def set_prototype
@@ -30,11 +38,12 @@ class PrototypesController < ApplicationController
 
   def prototype_params
     params.require(:prototype).permit(
+      :id,
       :title,
       :catch_copy,
       :concept,
       :user_id,
       captured_images_attributes: [:content, :status]
-    )
+    ).merge(prototype_id: params[:prototype_id])
   end
 end
