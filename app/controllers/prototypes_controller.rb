@@ -24,7 +24,8 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-
+   @main = @prototype.captured_images.where(status: 0).first
+   @sub = @prototype.captured_images.where(status: 1)
   end
 
 
@@ -47,7 +48,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:id, :content, :status]
     )
   end
 end
