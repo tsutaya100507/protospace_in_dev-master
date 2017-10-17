@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+  before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
     @prototypes = Prototype.all.page(params[:page]).per(5)
@@ -20,6 +20,20 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    # @prototype = Prototype.find(params[:id])
+  end
+
+  def edit
+   @main = @prototype.captured_images.where(status: 0).first
+   @sub = @prototype.captured_images.where(status: 1)
+  end
+
+
+  def update
+    # if prototype.user_id == current_user.id
+    # binding.pry
+    @prototype.update(prototype_params)
+    redirect_to :root
   end
 
   private
@@ -34,7 +48,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:id, :content, :status]
     )
   end
 end
