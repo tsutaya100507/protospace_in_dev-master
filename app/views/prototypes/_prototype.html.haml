@@ -9,3 +9,5 @@
           = link_to prototype.user.name, user_path(prototype.user)
         .proto-posted
           = prototype.posted_date
+        .proto-editbottun
+          = link_to "編集", edit_prototype_path(prototype), method: :get
