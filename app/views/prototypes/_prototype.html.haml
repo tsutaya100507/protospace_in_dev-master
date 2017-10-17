@@ -7,5 +7,7 @@
       .proto-meta
         .proto-user
           = link_to prototype.user.name, user_path(prototype.user)
+          .proto-editbottun
+            = link_to "編集", edit_prototype_path(prototype), method: :get
         .proto-posted
           = prototype.posted_date
