@@ -1,9 +1,8 @@
 class CreateTags < ActiveRecord::Migration
   def change
-    create_table :prototypes_tags do |t|
+    create_table :tags do |t|
 
-      t.string :tag_id
-      t.string :prototype_id
+      t.string :title
       t.timestamps
     end
   end

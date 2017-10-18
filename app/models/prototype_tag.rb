@@ -1,4 +1,4 @@
-class PrototypesTag < ActiveRecord::Base
+class PrototypeTag < ActiveRecord::Base
   belongs_to :tag
   belongs_to :Prototype
 end

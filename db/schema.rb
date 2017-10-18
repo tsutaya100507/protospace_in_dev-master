@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017010119) do
+ActiveRecord::Schema.define(version: 20171017013346) do
 
   create_table "captured_images", force: :cascade do |t|
     t.string  "content",      limit: 255
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20171017010119) do
   create_table "prototypes_tags", force: :cascade do |t|
     t.string   "tag_id",       limit: 255
     t.string   "prototype_id", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
