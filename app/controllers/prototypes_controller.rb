@@ -39,7 +39,7 @@ class PrototypesController < ApplicationController
     # if prototype.user_id == current_user.id
     # binding.pry
     @prototype.update(prototype_params)
-    redirect_to :root
+    redirect_to :root, notice: 'Prototype was successfully updated'
   end
 
   private
