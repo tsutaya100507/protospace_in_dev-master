@@ -14,6 +14,7 @@ class Prototype < ActiveRecord::Base
   end
 
   def set_main_thumbnail
+    # binding.pry
     captured_images.main.first.content
   end
 
