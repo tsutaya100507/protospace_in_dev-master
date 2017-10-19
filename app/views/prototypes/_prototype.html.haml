@@ -7,7 +7,10 @@
       .proto-meta
         .proto-user
           = link_to prototype.user.name, user_path(prototype.user)
-          .proto-editbottun
-            = link_to "編集", edit_prototype_path(prototype), method: :get
+          -if user_signed_in? && current_user.id == prototype.user_id
+            .proto-delete
+              = link_to "delete", prototype_path(prototype), method: :delete
+            .proto-editbottun
+              = link_to "edit", edit_prototype_path(prototype), method: :get
         .proto-posted
           = prototype.posted_date

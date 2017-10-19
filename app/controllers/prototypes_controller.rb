@@ -42,6 +42,14 @@ class PrototypesController < ApplicationController
     redirect_to :root, notice: 'Prototype was successfully updated'
   end
 
+  def destroy
+    prototype = Prototype.find(params[:id])
+      if prototype.user_id == current_user.id
+        prototype.destroy
+        redirect_to root_path, alert: 'prototype was successfully deleted'
+      end
+  end
+
   private
 
   def set_prototype
