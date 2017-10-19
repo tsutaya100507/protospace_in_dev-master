@@ -7,6 +7,7 @@ class PrototypesController < ApplicationController
 
   def new
     @prototype = Prototype.new
+    @tag = Tag.new
     @prototype.captured_images.build
   end
 
@@ -20,7 +21,6 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # @prototype = Prototype.find(params[:id])
   end
 
   def edit
@@ -30,8 +30,6 @@ class PrototypesController < ApplicationController
 
 
   def update
-    # if prototype.user_id == current_user.id
-    # binding.pry
     @prototype.update(prototype_params)
     redirect_to :root
   end
@@ -48,7 +46,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
+      { :tag_id => [] },
       captured_images_attributes: [:id, :content, :status]
-    )
+    ).merge(tags: params[:prototype][:tag])
   end
 end
