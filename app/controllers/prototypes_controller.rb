@@ -8,7 +8,7 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
-    @sub = @prototype.captured_images.where(status: 1).first
+    # @sub = @prototype.captured_images.where(status: 1).first
 
   end
 
