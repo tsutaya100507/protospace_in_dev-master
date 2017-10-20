@@ -6,6 +6,10 @@ class TagsController < ApplicationController
   def show
   end
 
+  def new
+    @tag = Tag.new
+  end
+
 private
   def tags_params
     params.require(:tag).permit(:name, user_ids: [])
