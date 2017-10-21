@@ -8,11 +8,11 @@ class Prototype < ActiveRecord::Base
 
   accepts_nested_attributes_for :tags
 
-  validates :title,
-            :catch_copy,
-            :concept,
-            :tag,
-            presence: true
+  # validates :title,
+  #           :catch_copy,
+  #           :concept,
+  #           :tag,
+  #           presence: true
 
   def reject_sub_images(attributed)
     attributed['content'].blank?
