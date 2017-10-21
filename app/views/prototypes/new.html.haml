@@ -33,10 +33,8 @@
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
           %h4 Tag List
-          = @prototype.tags.each do |tag|
-          = tag.fields_for :tags, tag do |tag_field|
-          = tag.text_field :title, require: true, placeholder:"ex)Web"
-          = tag.text_field :title, placeholder:"ex)rails"
-          = tag.text_field :title, placeholder:"ex)UI/UX"
+          = f.text_field :title, require: true, placeholder:"ex)Web"
+          = f.text_field :title, placeholder:"ex)rails"
+          = f.text_field :title, placeholder:"ex)UI/UX"
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"

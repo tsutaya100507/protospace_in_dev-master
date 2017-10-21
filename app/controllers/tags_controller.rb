@@ -7,15 +7,8 @@ class TagsController < ApplicationController
   end
 
   def new
-    @tag = Tag.new
+    @tag = Tag.new(tag_params)
   end
 
-private
-  def tags_params
-    params.require(:tag).permit(:name, user_ids: [])
-  end
 
-  def set_tag
-    @prototype = Tag.find(params[:id])
-  end
 end
