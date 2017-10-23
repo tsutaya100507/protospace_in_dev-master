@@ -1,5 +1,6 @@
-= render partial: 'prototypes/top'
-  - @tags.each do |tag|
-    .tags_title
-      = tag.title
-    .tags_count
+= render 'prototypes/top'
+- @tag.each do |tag|
+  .tags_title
+    = tag
+  .tags_count
+    = 
