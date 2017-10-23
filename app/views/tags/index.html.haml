@@ -1,10 +1,5 @@
-.jumbotron
-  .container.text-center
-
-.filter-nav
-  .container
-    .row
-
-.container.proto-list
-  .row
-
+= render partial: 'prototypes/top'
+  - @tags.each do |tag|
+    .tags_title
+      = tag.title
+    .tags_count
