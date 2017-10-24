@@ -11,3 +11,5 @@
           = prototype.posted_date
         .proto-editbottun
           = link_to "編集", edit_prototype_path(prototype), method: :get
+        .proto-tag-btn
+          = link_to "tags.title", "/tags/#{:id}", method: :get, class: 'btn'
