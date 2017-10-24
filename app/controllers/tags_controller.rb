@@ -1,19 +1,20 @@
 class TagsController < ApplicationController
 
   def index
-    @tags_all = Tag.all
-    @tags = @tags_all.uniq.pluck(:title)
-    @new_array = @tags
+    @dup_tags = Tag.pluck(:title)
+
+    @tags = Tag.uniq.pluck(:title)
+
     @tags_list = []
 
-    for i in @new_array do
-    count = 0
-      for j in @tags_all do
-        if i == j
-          count += 1
-        @tags_list << count
-        end
-      end
+    for i in @tags do
+      count = 0
+        for j in @dup_tags do
+          if i == j
+              count += 1
+          @tags_list << count
+         end
+       end
     end
   end
 
