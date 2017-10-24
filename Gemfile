@@ -19,6 +19,7 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'rails_12factor'
 gem 'fog'
+gem "fog-aws"
 
 group :development, :test do
   gem 'byebug'
