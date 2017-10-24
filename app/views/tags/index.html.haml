@@ -2,7 +2,7 @@
 - @tags.each do |tag|
   .thumbnail
     %ul
-    .tags_title__btn
-      = tag
-    .tags_list__number
-      = "#{tag.prototypes.size}"
+  .tags_title__btn
+    = tag[0]
+  .tags_list__number
+    = tag[1]
