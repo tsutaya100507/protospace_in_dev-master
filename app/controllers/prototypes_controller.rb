@@ -14,10 +14,10 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
-      redirect_to :root, notice: 'New prototype was successfully created'
-    else
-      redirect_to :root, alert: 'YNew prototype was unsuccessfully created'
-     end
+        redirect_to :root, notice: 'New prototype was successfully created'
+      else
+        redirect_to :root, alert: 'YNew prototype was unsuccessfully created'
+    end
   end
 
   def show

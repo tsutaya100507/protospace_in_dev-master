@@ -1,0 +1,32 @@
+$tags_list__color: #5E5E5E;
+$tags_title__btn: #EEEEEE;
+
+
+.tags_title__btn {
+  font-weight: 300px;
+  line-height: 22px;
+  font-size: 20px;
+  text-decoration: none solid rgb(153,153,153);
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: $tags_title__btn;
+
+    box{
+      height: 50;
+      width: 260;
+      position: inline-block;
+    }
+}
+
+.tags_list__number {
+  background-color: $tags_list__color;
+  text-align: center;
+
+    box{
+      height: 50;
+      width: 260;
+      position: inline-block;
+    }
+}

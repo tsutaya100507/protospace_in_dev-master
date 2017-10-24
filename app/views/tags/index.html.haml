@@ -1,6 +1,8 @@
 = render 'prototypes/top'
-- @tag.each do |tag|
-  .tags_title
-    = tag
-  .tags_count
-    = 
+- @tags.each do |tag|
+  .thumbnail
+    %ul
+    .tags_title__btn
+      = tag
+    .tags_list__number
+      = @tags_list
