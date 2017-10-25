@@ -2,13 +2,14 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
-    @prototypes = Prototype.all.page(params[:page]).per(5)
+    @prototypes = Prototype.all.page(params[:page]).per(50)
   end
 
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
-    @sub = @prototype.captured_images.where(status: 1).first
+    @sub = @prototype.captured_images.where(status: 1)
+
 
   end
 
@@ -21,8 +22,8 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
-     end
+      redirect_to ({ action: new }), alert: 'New prototype was unsuccessfully created'
+    end
   end
 
   def show
@@ -32,13 +33,15 @@ class PrototypesController < ApplicationController
   def edit
    @main = @prototype.captured_images.where(status: 0).first
    @sub = @prototype.captured_images.where(status: 1)
-   @sub_new = Prototype.new
+   # @prototype.captured_images.build
+   @sub_new = @prototype.captured_images.where(status: 1).new
+
   end
 
   def update
     # if prototype.user_id == current_user.id
     # binding.pry
-    @prototype.update(prototype_params)
+    @prototype.update(update_prototype_params)
     redirect_to :root, notice: 'Prototype was successfully updated'
   end
 
@@ -62,7 +65,16 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:id, :content, :status, :prototype_id]
+      captured_images_attributes: [:content, :status]
     )
   end
+  def update_prototype_params
+  params.require(:prototype).permit(
+      :title,
+      :catch_copy,
+      :concept,
+      :user_id,
+      captured_images_attributes: [:id, :content, :status, :prototype_id]
+    )
+end
 end
