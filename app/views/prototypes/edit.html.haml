@@ -1,6 +1,6 @@
-
 .container.proto-new
   = form_for @prototype do |f|
+    = f.hidden_field :user_id, value: current_user.id
     .col-md-8.col-md-offset-2
       %header.row.user-nav.row
         .col-md-12
@@ -11,29 +11,27 @@
         .col-md-12
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
-            = f.fields_for :captured_images, @main do |image|
+            = f.fields_for :captured_images, @main, html: {id: :aaaaa} do |image|
               %img
-              = image.file_field :content, required: true
+              = image.file_field :content, required: true, id: :maingazou
               = image.hidden_field :status, value: "main"
         .col-md-12
           %h4 Sub Thumbnails
           %ul.proto-sub-list.list-group
-          - if @sub.present?
-            - 3.times do |i|
+            - @sub.length.times do |i|
               %li.list-group-item.col-md-4
                 .image-upload
-                  = f.fields_for :captured_images, @sub do |image|
+                  = f.fields_for :captured_images, @sub[i] do |image|
                     %img
-                    = image.file_field :content
+                    = image.file_field :content, class: :subgazou
                     = image.hidden_field :status, value: "sub"
-          - else
             - t=3-@sub.length
             - t.times do |t|
               %li.list-group-item.col-md-4
                 .image-upload
                   = f.fields_for :captured_images, @sub_new do |image|
                     %img
-                    = image.file_field :content
+                    = image.file_field :content, class: :subgazou
                     = image.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12
