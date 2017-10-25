@@ -149,7 +149,22 @@ body {
   z-index: 2;
 }
 
+.jumbotron {
+  background-image: image-url("header_bg.png");
+  background-position:  center 92px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:  100% auto;
+  padding: 80px 0;
+  margin-bottom: 0;
+}
+.filter-nav {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(100,100,100,0.2);
+  padding: 20px 0;
+  margin-bottom: 20px;
 
+}
 
 /* -- Ripple effect -------------------------------- */
 .ripple-effect {

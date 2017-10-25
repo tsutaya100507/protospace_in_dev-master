@@ -18,7 +18,9 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
 gem 'rails_12factor'
+
 gem 'fog'
+
 
 group :development, :test do
   gem 'byebug'
