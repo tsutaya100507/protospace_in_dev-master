@@ -12,4 +12,6 @@
         .proto-editbottun
           = link_to "編集", edit_prototype_path(prototype), method: :get
         .proto-tag-btn
-          = link_to "tags.title", "/tags/#{:id}", method: :get, class: 'btn'
+          - prototype.tags.each do |tag|
+            = link_to "#{tag.title}", tag_path(tag.id), class: "btn btn-default"
+

@@ -1,1 +1,22 @@
 = render 'prototypes/top'
+.proto_list_tag
+  - @tags.each do |tag|
+    .proto_content_tag
+      .thumbnail_tag
+        - if tag[0] == @tag.title
+          .tags_title__btn
+            = tag[0]
+          .tags_list__number
+            = tag[1]
+            %i project
+        .proto-meta
+          .proto-user
+            = link_to "#{users.name}" user_path(prototype.user)
+          .proto-posted
+            = prototype.posted_date
+          .proto-editbottun
+            = link_to "編集", edit_prototype_path(prototype), method: :get
+          .proto-tag-btn
+            - prototype.tags.each do |tag|
+              = link_to "#{tag.title}", tag_path(tag.id), class: "btn btn-default"
+
