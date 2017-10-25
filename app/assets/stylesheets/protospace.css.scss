@@ -630,3 +630,17 @@ body {
   border-color: #ebccd1;
   color: #a94442;
 }
+
+.main--destroy {
+  height: 100vh;
+  background-image: url("sakujyo.png");
+  vertical-align: middle;
+  text-align: center;
+  h1{
+    color: red;
+    font-weight: bold;
+  }
+  h2{
+    font-weight: bold;
+  }
+}
