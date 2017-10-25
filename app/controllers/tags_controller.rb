@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
 before_action :group_tags, only: [:index, :show]
-before_action :set_prototype, only: [:index, :show]
+# before_action :set_prototype, only: [:index, :show]
 
   def index
     @prototypes = Prototype.all.page(params[:page]).per(5)
@@ -8,7 +8,7 @@ before_action :set_prototype, only: [:index, :show]
 
   def show
     @tag = Tag.find(params[:id])
-    @user = User.find(params[:id])
+
   end
 
   def new
@@ -19,7 +19,12 @@ private
   def group_tags
     @tags = Tag.group(:title).count
   end
-  def set_prototype
-    @prototype = Prototype.find(params[:id])
+
+  # def set_prototype
+  #   @prototype = Prototype.find(params[:id])
+  # end
+
+  def user_params
+    params.require(:user).permit(:name, :user_id)
   end
 end

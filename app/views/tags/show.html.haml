@@ -10,12 +10,11 @@
             = tag[1]
             %i project
         .proto-meta
+        - @tag.prototypes do |prototype|
           .proto-user
-            = link_to "#{users.name}" user_path(prototype.user)
+            = link_to "#{prototype.user.name}", user_path(prototype.user)
           .proto-posted
             = prototype.posted_date
-          .proto-editbottun
-            = link_to "編集", edit_prototype_path(prototype), method: :get
           .proto-tag-btn
             - prototype.tags.each do |tag|
               = link_to "#{tag.title}", tag_path(tag.id), class: "btn btn-default"

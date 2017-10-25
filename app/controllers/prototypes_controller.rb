@@ -28,7 +28,6 @@ class PrototypesController < ApplicationController
    @sub = @prototype.captured_images.where(status: 1)
   end
 
-
   def update
     @prototype.update(prototype_params)
     redirect_to :root
