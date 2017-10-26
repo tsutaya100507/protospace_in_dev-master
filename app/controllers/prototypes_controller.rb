@@ -15,10 +15,6 @@ class PrototypesController < ApplicationController
 
   def create
     @prototype = Prototype.new(prototype_params)
-    # if @sub.present?
-    #   File.open(Rails.root.join("assets/images/default.jpg")) do |f|
-    #   @prototype.content = f
-    #   end
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
@@ -27,20 +23,17 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # @prototype = Prototype.find(params[:id])
   end
 
   def edit
    @main = @prototype.captured_images.where(status: 0).first
    @sub = @prototype.captured_images.where(status: 1)
-   # @prototype.captured_images.build
    @sub_new = @prototype.captured_images.where(status: 1).new
+   @main.content.cache! unless @main.content.blank?
 
   end
 
   def update
-    # if prototype.user_id == current_user.id
-    # binding.pry
     @prototype.update(update_prototype_params)
     redirect_to :root, notice: 'Prototype was successfully updated'
   end
@@ -74,7 +67,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:id, :content, :status, :prototype_id]
+      captured_images_attributes: [:id, :content, :status, :prototype_id, :content_cache]
     )
 end
 end
