@@ -45,9 +45,7 @@
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
           %h4 Tag List
-          = f.fields_for :tag do |k|
+          = f.fields_for :tags do |k|
             = k.text_field :title, placeholder:"ex)Web"
-            = k.text_field :title, placeholder:"ex)rails"
-            = k.text_field :title, placeholder:"ex)UI/UX"
       .row.text-center.proto-btn
         = f.submit "UPDATE", id: "button", class: "btn btn-lg btn-primary btn-block"

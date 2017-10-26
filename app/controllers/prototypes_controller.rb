@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: [:show, :edit, :update]
+  before_action :set_prototype, only: [:show, :edit, :update, :destroy]
 
   def index
     @prototypes = Prototype.all.page(params[:page]).per(5)
@@ -8,19 +8,13 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
-
     @prototype.tags.build
-
-    # @sub = @prototype.captured_images.where(status: 1).first
 
   end
 
   def create
     @prototype = Prototype.new(prototype_params)
-    # if @sub.present?
-    #   File.open(Rails.root.join("assets/images/default.jpg")) do |f|
-    #   @prototype.content = f
-    #   end
+
     if @prototype.save
         redirect_to :root, notice: 'New prototype was successfully created'
       else
@@ -43,7 +37,6 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    prototype = Prototype.find(params[:id])
       if prototype.user_id == current_user.id
         prototype.destroy
         redirect_to root_path, alert: 'prototype was successfully deleted'
@@ -65,8 +58,7 @@ class PrototypesController < ApplicationController
 
       { :tag_ids => [] },
       captured_images_attributes: [:id, :content, :status],
-      tags_attributes: [:title]
+      tags_attributes: [:id, :title]
     )
-
   end
 end
