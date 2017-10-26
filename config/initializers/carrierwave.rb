@@ -1,4 +1,5 @@
 CarrierWave.configure do |config|
+
   config.fog_provider = 'fog/aws'
   config.fog_credentials = {
     provider: 'AWS',
@@ -7,6 +8,19 @@ CarrierWave.configure do |config|
     region: ENV['S3_REGION']
   }
 
-  config.fog_directory  = 'proto-space-photo'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/proto-space-photo'
+case Rails.env
+when 'development'
+  config.storage = :fog
+  config.fog_directory = "proto-space-photo"
+  config.asset_host ="https://s3-ap-northeast-1.amazonaws.com/proto-space-photo"
+
+when 'production'
+  config.storage = :fog
+  config.fog_directory = "proto-space-photo"
+  config.asset_host ="https://s3-ap-northeast-1.amazonaws.com/proto-space-photo"
+
+when 'test'
+  config.strage = :file
+end
+
 end
