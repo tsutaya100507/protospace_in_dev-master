@@ -27,7 +27,7 @@
                   = f.fields_for :captured_images, @sub[i] do |image|
                     %img
                     = image.file_field :content, class: :subgazou
-                    = sub_image.hidden_field :status, value: "sub"
+                    = image.hidden_field :status, value: "sub"
             - t=3-@sub.length
             - t.times do |t|
               %li.list-group-item.col-md-4
