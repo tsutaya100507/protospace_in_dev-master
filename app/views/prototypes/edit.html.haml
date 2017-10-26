@@ -11,7 +11,8 @@
         .col-md-12
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
-            = f.fields_for :captured_images, @main, html: {id: :aaaaa} do |image|
+            = image_tag @prototype.set_main_thumbnail, class: :uploaded_main_img
+            = f.fields_for :captured_images, @main do |image|
               %img
               = image.file_field :content, required: true, id: :maingazou
               = image.hidden_field :status, value: "main"
@@ -21,6 +22,7 @@
             - @sub.length.times do |i|
               %li.list-group-item.col-md-4
                 .image-upload
+                  = image_tag @sub[i].content, class: :"image-upload-plus"
                   = f.fields_for :captured_images, @sub[i] do |image|
                     %img
                     = image.file_field :content, class: :subgazou
