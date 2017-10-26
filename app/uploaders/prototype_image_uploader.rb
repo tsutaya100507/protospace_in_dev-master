@@ -7,6 +7,15 @@ class PrototypeImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
+ #  case Rails.env
+ # when "development"
+ #    storage :file
+ #  when "production"
+ #    storage :fog
+ #  when "test"
+ #    storage :file
+ #  end
+
   # storage :file
   storage :fog
 

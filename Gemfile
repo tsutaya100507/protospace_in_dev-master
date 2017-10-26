@@ -18,6 +18,9 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
 gem 'rails_12factor'
+gem 'fog'
+gem 'fog-aws'
+gem 'jquery-turbolinks'
 
 gem 'fog'
 
