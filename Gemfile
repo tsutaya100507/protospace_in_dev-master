@@ -22,6 +22,9 @@ gem 'fog'
 gem 'fog-aws'
 gem 'jquery-turbolinks'
 
+gem 'fog'
+
+
 group :development, :test do
   gem 'byebug'
 end

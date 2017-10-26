@@ -1,0 +1,10 @@
+= render 'prototypes/top'
+.proto_list_tag
+  - @tags.each do |tag|
+    .proto_content_tag
+      .thumbnail_tag
+        .tags_title__btn
+          = tag[0]
+        .tags_list__number
+          = tag[1]
+          %i project

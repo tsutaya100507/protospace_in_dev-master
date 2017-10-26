@@ -16,6 +16,7 @@
               %img
               = image.file_field :content, required: true, id: :maingazou
               = image.hidden_field :status, value: "main"
+
         .col-md-12
           %h4 Sub Thumbnails
           %ul.proto-sub-list.list-group
@@ -26,7 +27,7 @@
                   = f.fields_for :captured_images, @sub[i] do |image|
                     %img
                     = image.file_field :content, class: :subgazou
-                    = image.hidden_field :status, value: "sub"
+                    = sub_image.hidden_field :status, value: "sub"
             - t=3-@sub.length
             - t.times do |t|
               %li.list-group-item.col-md-4
@@ -35,6 +36,7 @@
                     %img
                     = image.file_field :content, class: :subgazou
                     = image.hidden_field :status, value: "sub"
+
       .row.proto-description
         .col-md-12
           %h4 Catch Copy
@@ -42,5 +44,13 @@
         .col-md-12
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
+
+          %h4 Tag List
+          = f.fields_for :tags do |t|
+            = t.text_field :title, placeholder:"ex)Web"
+          = f.fields_for :tags do |t|
+            = t.text_field :title, placeholder:"ex)rails"
+          = f.fields_for :tags do |t|
+            = t.text_field :title, placeholder:"ex)UI/UX"
       .row.text-center.proto-btn
         = f.submit "UPDATE", id: "button", class: "btn btn-lg btn-primary btn-block"

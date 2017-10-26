@@ -22,5 +22,4 @@ when 'production'
 when 'test'
   config.strage = :file
 end
-
 end
