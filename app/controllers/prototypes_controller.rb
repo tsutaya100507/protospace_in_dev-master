@@ -66,9 +66,6 @@ class PrototypesController < ApplicationController
       { :tag_ids => [] },
       captured_images_attributes: [:id, :content, :status],
       tags_attributes: [:title]
-      )
-
-      captured_images_attributes: [:id, :content, :status, :prototype_id]
     )
 
   end
