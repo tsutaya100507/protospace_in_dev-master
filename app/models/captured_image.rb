@@ -1,5 +1,6 @@
 class CapturedImage < ActiveRecord::Base
   belongs_to :Prototype
+  has_many :likes, dependent: :destroy
 
   mount_uploader :content, PrototypeImageUploader
 

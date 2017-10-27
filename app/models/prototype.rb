@@ -1,6 +1,6 @@
 class Prototype < ActiveRecord::Base
   belongs_to :user
-  has_many :captured_images, dependent: :destroy
+  has_many :prototypes, dependent: :destroy
   has_many :tags, through: :prototype_tags
   has_many :prototype_tags
 
@@ -24,5 +24,9 @@ class Prototype < ActiveRecord::Base
 
   def posted_date
     created_at.strftime('%b %d %a')
+  end
+
+  def like_user(user_id)
+   likes.find_by(use_id: user_id)
   end
 end
