@@ -9,20 +9,23 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.new
     @prototype.captured_images.build
     @prototype.tags.build
-
   end
 
   def create
     @prototype = Prototype.new(prototype_params)
-
     if @prototype.save
-        redirect_to :root, notice: 'New prototype was successfully created'
-      else
-        redirect_to :root, alert: 'YNew prototype was unsuccessfully created'
+      tags_params[:tags_attributes].each_value do |hash|
+        tag = Tag.find_or_create_by(title: hash[:title])
+        PrototypeTag.create(tag_id: tag.id, prototype_id: @prototype.id)
+      end
+      redirect_to :root
+    else
+      redirect_to :root
     end
   end
 
   def show
+
   end
 
   def edit
@@ -33,18 +36,17 @@ class PrototypesController < ApplicationController
 
   def update
     @prototype.update(prototype_params)
-    redirect_to :root, notice: 'Prototype was successfully updated'
+    redirect_to :root
   end
 
   def destroy
-      if prototype.user_id == current_user.id
+    if prototype.user_id == current_user.id
         prototype.destroy
-        redirect_to root_path, alert: 'prototype was successfully deleted'
-      end
+        redirect_to root_path
+    end
   end
 
   private
-
   def set_prototype
     @prototype = Prototype.find(params[:id])
   end
@@ -55,10 +57,14 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-
       { :tag_ids => [] },
-      captured_images_attributes: [:id, :content, :status],
-      tags_attributes: [:id, :title]
+      captured_images_attributes: [:id, :content, :status]
     )
+  end
+
+  def tags_params
+    params.require(:prototype).permit(
+      tags_attributes: :title
+      )
   end
 end

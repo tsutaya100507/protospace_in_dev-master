@@ -32,10 +32,9 @@
         .col-md-12
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
-
           %h4 Tag List
-          - 3.times do |i|
+          - 3.times do
             = f.fields_for :tags do |t|
-              = t.text_field :title, placeholder:"ex)Web"
+              = t.text_field :title, placeholder:"ex)Web", class: "tag_list"
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"

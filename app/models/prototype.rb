@@ -6,7 +6,8 @@ class Prototype < ActiveRecord::Base
 
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
-  accepts_nested_attributes_for :tags, allow_destroy: true
+  accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: :reject_empty_tag
+
 
   # validates :title,
   #           :catch_copy,
@@ -18,8 +19,11 @@ class Prototype < ActiveRecord::Base
     attributed['content'].blank?
   end
 
+   def reject_empty_tag(attributed)
+    attributed['title'].blank?
+  end
+
   def set_main_thumbnail
-    # binding.pry
     captured_images.main.first.content
   end
 
