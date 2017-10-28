@@ -44,3 +44,11 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
+    .comment_form
+    = prototype_comments_path(@prototype)
+    = form_for @comment, url: prototype_comments_path(@prototype) do |f|
+      = f.text_field :text, class: "textbox", id: "new_comment"
+      = f.submit "コメントする", id: "button", class: "btn"
+    .comments
+      %comment.text
+

@@ -14,8 +14,6 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
-
-
       tags = []
       tags_params[:tags_attributes].each_value do |hash|
         tags << hash[:title]
@@ -31,7 +29,9 @@ class PrototypesController < ApplicationController
   end
 
   def show
-
+    @prototype = Prototype.find(params[:id])
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
   end
 
   def edit
