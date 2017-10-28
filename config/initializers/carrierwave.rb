@@ -18,7 +18,6 @@ CarrierWave.configure do |config|
 case Rails.env
 when 'development'
   config.storage = :file
-
 when 'production'
   config.storage = :fog
   config.fog_directory = "proto-space-photo"

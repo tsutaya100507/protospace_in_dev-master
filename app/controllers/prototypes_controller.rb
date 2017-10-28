@@ -11,13 +11,14 @@ class PrototypesController < ApplicationController
     @prototype.tags.build
   end
 
-  def create
+   def create
 
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       tags_params[:tags_attributes].each_value do |hash|
         tag = Tag.find_or_create_by(title: hash[:title])
         PrototypeTag.create(tag_id: tag.id, prototype_id: @prototype.id)
+        # binding.pry
         tags_params.compact.reject(&:empty?)
       end
       redirect_to :root
