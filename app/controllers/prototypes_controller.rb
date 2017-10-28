@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show, :edit, :update, :destroy]
 
   def index
-    @prototypes = Prototype.all.page(params[:page]).per(5)
+    @prototypes = Prototype.all.page(params[:page]).per(50)
   end
 
   def new
@@ -15,6 +15,7 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
 
+
       tags = []
       tags_params[:tags_attributes].each_value do |hash|
         tags << hash[:title]
@@ -22,9 +23,10 @@ class PrototypesController < ApplicationController
 
       @prototype.save_tags(tags)
 
-      redirect_to :root
+      redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to :root
+      redirect_to ({ action: new }), alert: 'New prototype was unsuccessfully created'
+
     end
   end
 
@@ -54,6 +56,7 @@ class PrototypesController < ApplicationController
     else
       redirect_to :root
     end
+
   end
 
   def destroy
@@ -75,7 +78,7 @@ class PrototypesController < ApplicationController
       :concept,
       :user_id,
       { :tag_ids => [] },
-      captured_images_attributes: [:id, :content, :status]
+      captured_images_attributes: [:id, :content, :status, :prototype_id]
     )
   end
 
