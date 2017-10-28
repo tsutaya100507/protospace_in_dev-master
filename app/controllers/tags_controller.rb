@@ -20,9 +20,6 @@ private
     @tags = Tag.group(:title).count
   end
 
-  # def set_prototype
-  #   @prototype = Prototype.find(params[:id])
-  # end
 
   def user_params
     params.require(:user).permit(:name, :user_id)
