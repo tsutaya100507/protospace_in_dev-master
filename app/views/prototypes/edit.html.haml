@@ -27,8 +27,6 @@
                     = sub_image.file_field :content
                     = sub_image.hidden_field :status, value: "sub"
 
-                    = image.file_field :content
-                    = image.hidden_field :status, value: "sub"
           - else
             - t=3-@sub.length
             - t.times do |t|
@@ -38,7 +36,7 @@
                     %img
                     = image.file_field :content
                     = image.hidden_field :status, value: "sub"
-                  
+
       .row.proto-description
         .col-md-12
           %h4 Catch Copy
@@ -46,13 +44,14 @@
         .col-md-12
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
-
           %h4 Tag List
-          = f.fields_for :tags do |t|
-            = t.text_field :title, placeholder:"ex)Web"
-          = f.fields_for :tags do |t|
-            = t.text_field :title, placeholder:"ex)rails"
-          = f.fields_for :tags do |t|
-            = t.text_field :title, placeholder:"ex)UI/UX"
+          / - if @tags.present?
+          - @tags.each do |tag|
+            = f.fields_for  :tags, tag do |k|
+              = k.text_field :title, placeholder:"ex)Web"
+          - a=3-@tags.length
+          - a.times do |g|
+            = f.fields_for :tags, @tag_new do |l|
+              = l.text_field :title, placeholder:"ex)Web"
       .row.text-center.proto-btn
         = f.submit "UPDATE", id: "button", class: "btn btn-lg btn-primary btn-block"
