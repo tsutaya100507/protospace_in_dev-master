@@ -12,11 +12,13 @@ class PrototypesController < ApplicationController
   end
 
   def create
+
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       tags_params[:tags_attributes].each_value do |hash|
         tag = Tag.find_or_create_by(title: hash[:title])
         PrototypeTag.create(tag_id: tag.id, prototype_id: @prototype.id)
+        tags_params.compact.reject(&:empty?)
       end
       redirect_to :root
     else
@@ -59,6 +61,7 @@ class PrototypesController < ApplicationController
       :user_id,
       { :tag_ids => [] },
       captured_images_attributes: [:id, :content, :status]
+      # tags_attributes: [:id, :title]
     )
   end
 

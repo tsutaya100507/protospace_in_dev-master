@@ -18,15 +18,27 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
 gem 'rails_12factor'
+gem 'fog'
+gem 'fog-aws'
+gem 'jquery-turbolinks'
 
 gem 'fog'
 
 
 group :development, :test do
   gem 'byebug'
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :production do
+  gem 'unicorn'
 end

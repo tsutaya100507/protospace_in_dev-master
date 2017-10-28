@@ -6,14 +6,14 @@
         .col-md-12
           %h4 Title
           .proto-new-title
-            = f.text_field :title, required: true, autofocus: true, placeholder: "Input Title"
+            = f.text_field :title, placeholder: "Input Title"
       .row
         .col-md-12
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
             = f.fields_for :captured_images do |image|
-              %img
-              = image.file_field :content, required: true
+              %img.preview
+              = image.file_field :content, required: true, id: :maingazou
               = image.hidden_field :status, value: "main"
         .col-md-12
           %h4 Sub Thumbnails
@@ -23,8 +23,10 @@
                 .image-upload
                   = f.fields_for :captured_images do |image|
                     %img
-                    = image.file_field :content
+                    = image.file_field :content, class: :subgazou
                     = image.hidden_field :status, value: "sub"
+
+
       .row.proto-description
         .col-md-12
           %h4 Catch Copy
