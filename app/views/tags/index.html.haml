@@ -1,10 +1,12 @@
 = render 'prototypes/top'
 .proto_list_tag
-  - @tags.each do |tag|
-    .proto_content_tag
-      .thumbnail_tag
-        .tags_title__btn
-          = tag[0]
-        .tags_list__number
-          = tag[1]
-          %i project
+  .row
+    - @tags.each do |tag|
+      = link_to tag_path(tag.id) do
+        .proto_content_tag
+          .thumbnail_tag
+            .tags_title__btn
+              = tag.title
+            .tags_list__number
+              = tag.prototypes.count
+              %i project

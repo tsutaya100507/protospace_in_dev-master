@@ -9,11 +9,11 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: :reject_empty_tag
 
 
-  # validates :title,
-  #           :catch_copy,
-  #           :concept,
-  #           :tag,
-  #           presence: true
+  validates :title,
+            :catch_copy,
+            :concept,
+            presence: true
+
   def save_tags(tags)
     current_tags = self.tags.pluck(:title) unless self.tags.nil?
     old_tags = current_tags - tags
