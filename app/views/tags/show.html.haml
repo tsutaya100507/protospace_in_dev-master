@@ -1,21 +1,35 @@
 = render 'prototypes/top'
 .proto_list_tag
-  - @tags.each do |tag|
-    .proto_content_tag
-      .thumbnail_tag
-        - if tag[0] == @tag.title
-          .tags_title__btn
-            = tag[0]
-          .tags_list__number
-            = tag[1]
-            %i project
-        .proto-meta
-        - @tag.prototypes do |prototype|
-          .proto-user
-            = link_to "#{prototype.user.name}", user_path(prototype.user)
-          .proto-posted
-            = prototype.posted_date
-          .proto-tag-btn
-            - prototype.tags.each do |tag|
-              = link_to "#{tag.title}", tag_path(tag.id), class: "btn btn-default"
+  .proto_content_tag
+    .thumbnail_tag
+      .tags_title__btn
+        = @tag.title
+      .tags_list__number
+        = @tags.length
+        %i project
+      .container.proto-list
+        .row
+        - @tags.each do |prototype|
+          .col-sm-4.col-md-3.proto-content
+            .thumbnail
+              = link_to image_tag(prototype.set_main_thumbnail), prototype_path(prototype)
+              .caption
+                %h3
+                  = prototype.title
+                .proto-meta
+                  .proto-user
+                    = link_to prototype.user.name, user_path(prototype.user)
+                    -if user_signed_in? && current_user.id == prototype.user_id
+                      .proto-delete
+                        = link_to "delete", prototype_path(prototype), method: :delete
+                      .proto-editbottun
+                        = link_to "edit", edit_prototype_path(prototype), method: :get
+                  .proto-posted
+                    = prototype.posted_date
+                  .proto-editbottun
+                    = link_to "編集", edit_prototype_path(prototype), method: :get
+                  .proto-tag-btn
+                    - prototype.tags.each do |tag|
+                      = link_to "#{tag.title}", tag_path(tag.id), class: "btn btn-default"
+
 
