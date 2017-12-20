@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20171217072621) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "prototype_tags", force: :cascade do |t|
     t.string   "tag_id",       limit: 255
     t.string   "prototype_id", limit: 255
@@ -36,12 +43,13 @@ ActiveRecord::Schema.define(version: 20171217072621) do
   end
 
   create_table "prototypes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "catch_copy", limit: 255
-    t.text     "concept",    limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "title",       limit: 255
+    t.string   "catch_copy",  limit: 255
+    t.text     "concept",     limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "likes_count", limit: 4
   end
 
   add_index "prototypes", ["user_id"], name: "index_prototypes_on_user_id", using: :btree

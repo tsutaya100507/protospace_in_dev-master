@@ -45,10 +45,10 @@
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
   .row.proto-comments
-    .col-md-12
-      = render partial: 'prototypes/comment', collection: @prototype.comments
+    .col-md-12#comments
+      = render partial: 'prototypes/comment', collection: @comments
     .col-md-8
-      = form_for @comment, remote: true do |f|
+      = form_for [@prototype, @comment], remote: true do |f|
         %h4 Write a comment
         = f.text_area :text, id: "comment_field"
         = f.submit :comment, class: "btn btn-primary"
