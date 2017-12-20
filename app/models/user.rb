@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, UserImageUploader
 
+  has_many :comments
   has_many :prototypes
 
   # validates :name, presence: true
